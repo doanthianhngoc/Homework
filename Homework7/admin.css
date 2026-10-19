@@ -1,0 +1,168 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+.container {
+    width: 94%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #1677d2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.form-section,
+.table-section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #1677d2;
+}
+
+small {
+    display: block;
+    margin-top: 6px;
+    color: #777;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#submit-btn {
+    background: #1677d2;
+    color: white;
+}
+
+#submit-btn:hover {
+    background: #095eaa;
+}
+
+#cancel-btn {
+    background: #777;
+    color: white;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th,
+td {
+    padding: 13px 10px;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: left;
+}
+
+th {
+    background: #e9edf2;
+}
+
+td img {
+    width: 65px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.edit-btn {
+    background: #fff0d6;
+    color: #8a5a00;
+    margin-right: 5px;
+}
+
+.delete-btn {
+    background: #ffe1e1;
+    color: #b42318;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 96%;
+        margin: 15px auto;
+    }
+
+    .form-section,
+    .table-section {
+        padding: 15px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
