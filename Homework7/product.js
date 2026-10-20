@@ -1,5 +1,6 @@
 
-const defaultProducts = [
+// Danh sách sản phẩm
+let products = [
     {
         id: "SP1",
         name: "Áo dài thêu họa tiết",
@@ -26,69 +27,70 @@ const defaultProducts = [
     }
 ];
 
-// Dữ liệu chỉ tồn tại trong lúc trang đang chạy
-let products = defaultProducts.map(product => ({ ...product }));
-
-// Hiển thị danh sách sản phẩm
+// Hiển thị sản phẩm
 function renderProducts() {
-    const list = document.getElementById("product-list");
+    let list = document.getElementById("product-list");
 
-    if (!list) {
-        console.error("Không tìm thấy phần tử có id='product-list' trong index.html");
+    // Kiểm tra phần tử HTML
+    if (list == null) {
+        console.log("Không tìm thấy product-list");
         return;
     }
 
-    list.innerHTML = products.map(product => `
-        <div class="product-card">
-            <img
-                src="${product.img}"
-                alt="${product.name}"
-                class="product-image"
-            >
+    // Xóa danh sách cũ trước khi hiển thị
+    list.innerHTML = "";
 
-            <div class="product-name">
-                ${product.name}
-            </div>
+    // Duyệt từng sản phẩm
+    for (let i = 0; i < products.length; i++) {
+        let product = products[i];
 
-            <div class="product-price">
-                ${product.price.toLocaleString("vi-VN")}đ
-            </div>
+        // Tạo HTML cho một sản phẩm
+        let html = "";
 
-            <button
-                type="button"
-                class="add-cart"
-                onclick="addToCart('${product.id}')"
-                aria-label="Chọn ${product.name}"
-            >
-                🛒
-            </button>
-        </div>
-    `).join("");
+        html += '<div class="product-card">';
 
-    // Báo lỗi nếu không tải được ảnh
-    list.querySelectorAll("img").forEach(img => {
-        img.addEventListener("error", function () {
-            console.error("Không tìm thấy ảnh:", img.src);
-            img.alt = "Không tải được ảnh sản phẩm";
-        });
-    });
+        html += '<img src="' + product.img +
+                '" alt="' + product.name +
+                '" class="product-image">';
+
+        html += '<div class="product-name">';
+        html += product.name;
+        html += '</div>';
+
+        html += '<div class="product-price">';
+        html += product.price.toLocaleString("vi-VN") + "đ";
+        html += '</div>';
+
+        html += '<button type="button" class="add-cart" ';
+        html += 'onclick="addToCart(\'' + product.id + '\')">';
+        html += '🛒';
+        html += '</button>';
+
+        html += '</div>';
+
+        // Đưa sản phẩm vào HTML
+        list.innerHTML += html;
+    }
 }
 
 // Chọn sản phẩm
 function addToCart(id) {
-    const product = products.find(item => item.id === id);
+    // Tìm sản phẩm theo ID
+    for (let i = 0; i < products.length; i++) {
+        if (products[i].id == id) {
+            alert(
+                "Bạn đã chọn: " + products[i].name +
+                "\nGiá: " +
+                products[i].price.toLocaleString("vi-VN") + "đ"
+            );
 
-    if (product) {
-        alert(
-            "Bạn đã chọn: " + product.name +
-            "\nGiá: " + product.price.toLocaleString("vi-VN") + "đ"
-        );
+            return;
+        }
     }
+
+    // Không tìm thấy sản phẩm
+    alert("Không tìm thấy sản phẩm!");
 }
 
-// Chạy khi HTML đã được tải
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", renderProducts);
-} else {
-    renderProducts();
-}
+// Hiển thị sản phẩm khi trang tải xong
+renderProducts();
